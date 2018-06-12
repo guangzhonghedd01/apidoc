@@ -2,9 +2,9 @@
 
 # dependencies
 /node_modules
-/api
+/api/*
 # misc
 .DS_Store
 npm-debug.log*
 .idea
-
+package-lock.json

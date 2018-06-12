@@ -1,14 +1,14 @@
 {
-  "name": "apidoc",
+  "name": "swagger-doc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vilien/apidoc.git"
+    "url": "git+https://github.com/guangzhonghedd01/apidoc.git"
   },
   "bugs": {
-    "url": "https://github.com/vilien/apidoc/issues"
+    "url": "https://github.com/guangzhonghedd01/apidoc/issues"
   },
   "scripts": {
     "start": "node index"
