@@ -1,33 +1,40 @@
-var path = require('path')
-var fs = require('fs')
+const path = require("path")
+const styleRules = require("./webpack.dist-style.config.js")
 
+let rules = [
+  { test: /\.(worker\.js)(\?.*)?$/,
+    use: [
+      {
+        loader: "worker-loader",
+        options: {
+          inline: true,
+          name: "[name].js"
+        }
+      },
+      { loader: "babel-loader?retainLines=true" }
+    ]
+  }
+]
 
-module.exports = require('./make-webpack-config.js')({
+module.exports = require("./make-webpack-config.js")(rules, {
   _special: {
+    separateStylesheets: true,
     minimize: true,
+    mangle: true,
     sourcemaps: true,
-    separateStylesheets: false,
-    loaders: {
-      "worker.js": ["worker-loader?inline=true&name=[name].js", "babel"],
-      "react": {
-        test: require.resolve("react"),
-        loader: "expose-loader?React"
-      }
-
-    }
   },
 
   entry: {
-    "swagger-editor-bundle": [
-      "./src/polyfills.js",
-      './src/index.js'
+    "swagger-ui-bundle": [
+      "./src/polyfills",
+      "./src/core/index.js"
     ]
   },
 
   output:  {
     path: path.join(__dirname, "dist"),
     publicPath: "/dist",
-    library: "SwaggerEditorBundle",
+    library: "SwaggerUIBundle",
     libraryTarget: "umd",
     filename: "[name].js",
     chunkFilename: "js/[name].js",
